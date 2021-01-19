@@ -1,0 +1,11 @@
+parameters:
+- name: loopList
+  type: object
+  default:
+  - one
+  - two
+ 
+steps:
+  - ${{ each value in parameters.loopList }}:
+    - script: echo ${{ value }}
+      displayName: 'Test looping'
