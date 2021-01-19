@@ -1,5 +1,4 @@
 parameters:
-parameters:
   - name: LoopList
     type: object
     default: $[ 5 ]
