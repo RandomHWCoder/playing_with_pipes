@@ -26,7 +26,7 @@ steps:
       with open('temp.txt', 'w') as fp:
         for i in range(int(sys.argv[1])):
           fp.write(f'{i},')
-        fp.write(f'{i})
+        fp.write(f'{i}')
       with open('temp.bat', 'w') as bat:
         bat.write("set /p TestVal=< temp.txt")
     arguments: '$(SomeNumber)'
