@@ -12,8 +12,28 @@
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  - name: SomeNumber
+    value: 5
+  - name: SomeList
 
 steps:
-  - template: azure_template.yaml
-    parameters:
-      param: ["1", "2", "3", "4"]
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      import sys
+      with open('temp.txt', 'w') as fp:
+        for i in range(int(sys.argv[1])):
+          fp.write(f'{i},')
+        fp.write(f'{i})
+      with open('temp.bat', 'w') as bat:
+        bat.write("set /p TestVal=< temp.txt")
+    arguments: '$(SomeNumber)'
+- task: BatchScript@1
+  inputs:
+    filename: 'temp.bat'
+    modifyEnvironment: true
+- template: azure_template.yaml
+  parameters:
+    param: [$(TestVal)]
