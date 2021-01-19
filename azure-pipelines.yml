@@ -36,4 +36,4 @@ steps:
     modifyEnvironment: true
 - template: azure_template.yaml
   parameters:
-    param: [$(TestVal)]
+    param: $(TestVal)
