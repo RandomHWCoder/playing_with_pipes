@@ -28,7 +28,7 @@ steps:
         x+= f'\"{i}\",'
       x+= f'\"{int(sys.argv[1])}\"'
       with open('temp.bat', 'w') as bat:
-        bat.write(f"set  TestVal={x}")
+        bat.write(f"echo \"##vso[task.setvariable variable=TestVal]{x}\"")
     arguments: '$(SomeNumber)'
 - task: BatchScript@1
   inputs:
