@@ -1,7 +1,7 @@
 parameters:
   - name: LoopList
-    type: object
-    default: $[ 5 ]
+    type: number
+    default: 5
  
 steps:
   - ${{ each value in parameters.LoopList }}:
