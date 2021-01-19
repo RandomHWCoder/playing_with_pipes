@@ -15,3 +15,5 @@ pool:
 
 steps:
   - template: azure_template.yaml
+    parameters:
+      param: ["1", "2", "3", "4"]
