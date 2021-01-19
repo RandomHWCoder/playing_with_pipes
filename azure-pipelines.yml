@@ -26,7 +26,7 @@ steps:
       x=""
       for i in range(1, int(sys.argv[1])):
         x+= f'\"{i}\",'
-      x+= f'\"{int(sys.argv[1])}\"')
+      x+= f'\"{int(sys.argv[1])}\"'
       with open('temp.bat', 'w') as bat:
         bat.write(f"set  TestVal={x}")
     arguments: '$(SomeNumber)'
