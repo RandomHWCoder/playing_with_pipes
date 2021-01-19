@@ -1,9 +1,7 @@
 parameters:
-  - name: LoopList
-    type: number
-    default: 5
+  param: []
  
 steps:
-  - ${{ each value in parameters.LoopList }}:
+  - ${{ each value in parameters.param }}:
     - script: echo ${{ value }}
       displayName: 'Test looping'
