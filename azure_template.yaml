@@ -1,11 +1,10 @@
 parameters:
-- name: loopList
-  type: object
-  default:
-  - one
-  - two
+parameters:
+  - name: LoopList
+    type: object
+    default: $[ 5 ]
  
 steps:
-  - ${{ each value in parameters.loopList }}:
+  - ${{ each value in parameters.LoopList }}:
     - script: echo ${{ value }}
       displayName: 'Test looping'
