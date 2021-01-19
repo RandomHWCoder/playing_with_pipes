@@ -1,0 +1,18 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+parameters:
+  - name: LoopList
+    type: object
+    default: $[ 5 ]
+
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+
+steps:
+- ${{ each value in parameters.LoopList }}
+- script: echo ${{ value }}
+  displayName: 'Test looping'
