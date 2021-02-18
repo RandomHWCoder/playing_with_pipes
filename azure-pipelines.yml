@@ -18,7 +18,7 @@ stages:
         steps:
         - task: CmdLine@2
           inputs:
-            script: 'git status && git checkout -b dev/test-branch && git push -u && git status'
+            script: 'git status && git checkout -b dev/test-branch && git push --set-upstream origin dev/test-branch && git status'
   - stage: SecondStage
     jobs: 
       - job:
