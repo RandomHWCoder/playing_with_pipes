@@ -18,7 +18,7 @@ stages:
         steps:
         - task: CmdLine@2
           inputs:
-            script: 'git branch && git checkout -b dev/test-branch'
+            script: 'git status && git checkout -b dev/test-branch && git status'
   - stage: SecondStage
     jobs: 
       - job:
@@ -28,5 +28,5 @@ stages:
         steps:
         - task: CmdLine@2
           inputs:
-            script: 'echo Checking branch && git branch'
+            script: 'echo Checking branch && git status'
         
