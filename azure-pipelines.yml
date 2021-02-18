@@ -8,35 +8,25 @@
 #     default: $[ 5 ]
 
 
+stages:
+  - stage: FirstStage
+    jobs: 
+      - job:
+        pool:
+          vmImage: 'windows-latest'
 
-pool:
-  vmImage: 'windows-latest'
+        steps:
+        - task: CmdLine@2
+          inputs:
+            script: 'git branch && git checkout -b dev/test-branch'
+  - stage: SecondStage
+    jobs: 
+      - job:
+        pool:
+          vmImage: 'windows-latest'
 
-variables:
-  - name: SomeNumber
-    value: 5
-  - name: SomeList
-
-steps:
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'inline'
-    script: |
-      import sys
-      x=""
-      for i in range(1, int(sys.argv[1])):
-        x+= f'\"{i}\",'
-      x+= f'\"{int(sys.argv[1])}\"'
-      with open('temp.bat', 'w') as bat:
-        bat.write(f'echo \"##vso[task.setvariable variable=TestVal]\"1\", \"2\", \"3\"\"')
-    arguments: '$(SomeNumber)'
-- task: CmdLine@2
-  inputs:
-    script: 'echo "##vso[task.setvariable variable=TestVal]"1", "2", "3""'
-# - task: BatchScript@1
-#   inputs:
-#     filename: 'temp.bat'
-#     modifyEnvironment: true
-- template: azure_template.yaml
-  parameters:
-    param: [$(TestVal)]
+        steps:
+        - task: CmdLine@2
+          inputs:
+            script: 'echo Checking branch && git branch'
+        
