@@ -16,9 +16,12 @@ stages:
           vmImage: 'windows-latest'
 
         steps:
-        - task: CmdLine@2
+        - task: PowerShell@2
           inputs:
-            script: 'git status && git checkout -b dev/test-branch && git push --set-upstream origin dev/test-branch && git status'
+            targetType: inline
+            script: 'throw("This job should fail") '
+          continueOnError: true
+
   - stage: SecondStage
     jobs: 
       - job:
@@ -28,5 +31,5 @@ stages:
         steps:
         - task: CmdLine@2
           inputs:
-            script: 'echo Checking branch && git status'
+            script: 'echo this job should finish just fine. what will be the build outcome?'
         
