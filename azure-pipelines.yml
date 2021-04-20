@@ -17,9 +17,16 @@ stages:
 
         steps:
         - task: PowerShell@2
+          timeoutInMinutes: 1
           inputs:
             targetType: inline
-            script: 'throw("This job should fail") '
+            script: |
+              while($true)
+              {
+                  $i++
+                  Write-Host “We have counted up to $i”
+                  Start-Sleep -s 5
+              }
           continueOnError: true
 
   - stage: SecondStage
