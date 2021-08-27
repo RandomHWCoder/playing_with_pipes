@@ -25,3 +25,4 @@ stages:
             targetType: inline
             script: |
               Write-Host The version is $(major_minor).$(patch)
+              write-host Making an edit that will change the commit but not the versions
