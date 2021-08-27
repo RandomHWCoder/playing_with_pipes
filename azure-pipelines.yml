@@ -10,7 +10,7 @@
 variables:
   major: 1
   minor: 0
-  patch: $[counter(variables['major', 'minor'], 0)]
+  patch: $[counter(variables['major'], variables['minor'], 0)]
 
 stages:
   - stage: FirstStage
