@@ -8,9 +8,8 @@
 #     default: $[ 5 ]
 
 variables:
-  major: 1
-  minor: 0
-  patch: $[counter(variables['major'], variables['minor'], 0)]
+  major_minor: 1.0
+  patch: $[counter(variables['major'], 0)]
 
 stages:
   - stage: FirstStage
@@ -25,4 +24,4 @@ stages:
           inputs:
             targetType: inline
             script: |
-              Write-Host The version is $(major).$(minor).$(patch)
+              Write-Host The version is $(major_minor).$(patch)
