@@ -7,6 +7,10 @@
 #     type: object
 #     default: $[ 5 ]
 
+variables:
+  major: 1
+  minor: 0
+  patch: $[counter(variables['major', 'minor'], 0)]
 
 stages:
   - stage: FirstStage
@@ -21,22 +25,4 @@ stages:
           inputs:
             targetType: inline
             script: |
-              while($true)
-              {
-                  $i++
-                  Write-Host “We have counted up to $i”
-                  Start-Sleep -s 5
-              }
-          continueOnError: true
-
-  - stage: SecondStage
-    jobs: 
-      - job:
-        pool:
-          vmImage: 'windows-latest'
-
-        steps:
-        - task: CmdLine@2
-          inputs:
-            script: 'echo this job should finish just fine. what will be the build outcome?'
-        
+              Write-Host The version is $(major).$(minor).$(patch)
